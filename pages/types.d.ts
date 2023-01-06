@@ -1,4 +1,5 @@
 export interface Todo {
-    text: string
-    description?: string
+  text: string;
+  description?: string;
+  done: boolean;
 }

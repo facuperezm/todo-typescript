@@ -5,7 +5,14 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      lineThrough: {
+        "text-decoration": "line-through",
+      },
+      fontFamily: {
+        sans: ["var(--font-inter)"],
+      },
+    },
   },
   plugins: [],
 };
