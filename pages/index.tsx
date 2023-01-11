@@ -16,7 +16,7 @@ export default function Home() {
     todoService.getAll().then(initialTodos => {
         setTodos(initialTodos as Todo[]);
     });
-}, []);
+}, [todos]);
 
   const handleNewTodo = (todo: Todo): void => {
     const todoObject = {
@@ -26,7 +26,7 @@ export default function Home() {
     todoService
       .create(todoObject)
       .then(returnedTodo => {
-        setTodos(prevTodos => prevTodos.concat(returnedTodo as Todo));
+        setTodos(todos.concat(returnedTodo as Todo));
       });
   };
 

@@ -12,7 +12,7 @@ interface Props {
 export default function List({ todos, onDelete, onComplete }: Props) {
   return (
     <ul>
-      {todos.map((todo, index) => {
+      {todos?.map((todo, index) => {
         return (
           <li
             className={`text-lg bg-gray-200 p-1 rounded-md text-black ${

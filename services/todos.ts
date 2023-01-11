@@ -3,7 +3,7 @@ import axios from 'axios';
 interface Todo {
     text: string;
 }
-const baseUrl = "http://localhost:3001/api/todos"
+const baseUrl = 'https://todotypes-backend.up.railway.app/api/todos';
 
 const getAll = (): Promise<Todo[]> => {
   const request = axios.get<Todo[]>(baseUrl);
@@ -20,7 +20,7 @@ const update = (id: string, newObject: Todo): Promise<Todo> => {
   return request.then(response => response.data);
 };
 
-const remove = (id: string): Promise<Todo> => {
+const remove = (id: any): Promise<Todo> => {
     const request = axios.delete<Todo>(`${baseUrl}/${id}`);
     return request.then(response => response.data);
 };
