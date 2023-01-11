@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Form from "./components/Form";
 import List from "./components/List";
 import { Todo } from "./types";
+import todoService from "../services/todos";
+
 interface AppState {
   todos: Array<Todo>;
 }
@@ -9,12 +11,35 @@ interface AppState {
 export default function Home() {
   const [todos, setTodos] = useState<AppState["todos"]>([]);
 
+  useEffect(() => {
+    todoService
+      .getAll()
+      .then(initialTodos => {
+        setTodos(initialTodos)
+      })
+  }, [])
+
   const handleNewTodo = (todo: Todo): void => {
     setTodos([...todos, todo]);
+    const todoObject = {
+      text: todo.text,
+    }
+
+    todoService
+      .create(todoObject)
+      .then(returnedTodo => {
+        setTodos(todos.concat(returnedTodo))
+      })
   };
+
   const handleDelete = (index: number): void => {
     const newTodos = todos.filter((todo, i) => i !== index);
-    setTodos(newTodos);
+    const id = todos[index];
+    todoService
+      .remove(id)
+      .then(() => {
+        setTodos(newTodos)
+      })
   };
 
   const handleCompleted = (index: number): void => {
@@ -22,7 +47,6 @@ export default function Home() {
       if (i === index) {
         return {
           ...todo,
-          done: !todo.done,
         };
       }
       return todo;

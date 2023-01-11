@@ -1,17 +1,22 @@
-import useNewTodoForm from "../hooks/useNewTodoForm";
+import { useState } from "react";
 import { Todo } from "../types";
 interface FormProps {
   onNewTodo: (todo: Todo) => void;
 }
 
+interface FormState {
+  inputValues: Todo;}
+
 const Form = ({ onNewTodo }: FormProps) => {
-  const [inputValue, dispatch] = useNewTodoForm();
+  const [inputValue, setInputValue] = useState<FormState["inputValues"]>({
+    text: "",
+  });
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     onNewTodo(inputValue);
-    dispatch({
-      type: "CLEAR",
+    setInputValue({
+      text: "",
     });
   };
 
@@ -19,14 +24,12 @@ const Form = ({ onNewTodo }: FormProps) => {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
-    dispatch({
-      type: "CHANGE_VALUE",
-      payload: {
-        inputName: name,
-        inputValue: value,
-      },
-    });
+    setInputValue({
+      ...inputValue,
+      [name]: value,
+      });
   };
+
 
   return (
     <form
@@ -41,13 +44,6 @@ const Form = ({ onNewTodo }: FormProps) => {
         placeholder="Do my homework"
         className="border border-gray-400 p-2 rounded-lg text-black"
         name="text"
-      />
-      <textarea
-        onChange={handleChange}
-        value={inputValue.description}
-        placeholder="Because it is due tomorrow"
-        className="border border-gray-400 p-2 rounded-lg text-black"
-        name="description"
       />
       <button
         type="submit"

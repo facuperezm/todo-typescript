@@ -22,7 +22,7 @@ export default function List({ todos, onDelete, onComplete }: Props) {
 
   return (
     <ul>
-      {todos.map((todo, index) => {
+      {todos?.map((todo, index) => {
         return (
           <li
             className={`text-lg bg-gray-200 p-1 rounded-md text-black ${
@@ -37,7 +37,6 @@ export default function List({ todos, onDelete, onComplete }: Props) {
             />
             <div className="flex flex-col flex-1 px-2">
               <span>{todo.text}</span>
-              <span className="text-sm">{todo.description}</span>
             </div>
             <button onClick={() => onDelete(index)}>
               <AiFillDelete />

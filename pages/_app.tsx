@@ -7,7 +7,12 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-function MyApp({ Component, pageProps }) {
+type AppProps = {
+  Component: React.ComponentType;
+  pageProps: Record<string, unknown>;
+};
+
+function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
