@@ -3,20 +3,20 @@ import { Todo } from "../types";
 interface FormProps {
   onNewTodo: (todo: Todo) => void;
 }
-
 interface FormState {
-  inputValues: Todo;}
+  inputValues: Todo;
+}
 
 const Form = ({ onNewTodo }: FormProps) => {
-  const [inputValue, setInputValue] = useState<FormState["inputValues"]>({
-    text: "",
-  });
+  const [inputValue, setInputValue] = useState<FormState["inputValues"]>({text: "", done: false, id: ""});
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     onNewTodo(inputValue);
     setInputValue({
       text: "",
+      done: false,
+      id: "",
     });
   };
 

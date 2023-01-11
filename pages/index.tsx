@@ -11,47 +11,52 @@ interface AppState {
 export default function Home() {
   const [todos, setTodos] = useState<AppState["todos"]>([]);
 
+
   useEffect(() => {
     todoService
       .getAll()
       .then(initialTodos => {
-        setTodos(initialTodos)
+        console.log("get")
+        setTodos([initialTodos])
       })
-  }, [])
+  },[])
 
   const handleNewTodo = (todo: Todo): void => {
-    setTodos([...todos, todo]);
     const todoObject = {
       text: todo.text,
+      done: false
     }
-
     todoService
       .create(todoObject)
       .then(returnedTodo => {
-        setTodos(todos.concat(returnedTodo))
-      })
+        setTodos(prevTodos => prevTodos.concat(returnedTodo));
+      });
   };
 
   const handleDelete = (index: number): void => {
     const newTodos = todos.filter((todo, i) => i !== index);
-    const id = todos[index];
+    const id = todos[index].id;
+ 
     todoService
       .remove(id)
       .then(() => {
+        console.log("delete")
         setTodos(newTodos)
       })
   };
+  const handleCompleted = (index: number) => {
+    const todoToUpdate = todos[index];
+    const updatedTodo = { ...todoToUpdate, done: !todoToUpdate.done };
+    const id = todos[index].id;
 
-  const handleCompleted = (index: number): void => {
-    const newTodos = todos.map((todo, i) => {
-      if (i === index) {
-        return {
-          ...todo,
-        };
-      }
-      return todo;
-    });
-    setTodos(newTodos);
+    todoService
+      .update(id, updatedTodo)
+      .then(returnedTodo => {
+        console.log("put")
+        setTodos(
+          todos.map((todo, i) => (i === index ? returnedTodo : todo))
+        );
+      });
   };
 
   return (
