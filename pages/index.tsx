@@ -13,13 +13,10 @@ export default function Home() {
 
 
   useEffect(() => {
-    todoService
-      .getAll()
-      .then(initialTodos => {
-        console.log("get")
-        setTodos([initialTodos])
-      })
-  },[])
+    todoService.getAll().then(initialTodos => {
+        setTodos(initialTodos as Todo[]);
+    });
+}, []);
 
   const handleNewTodo = (todo: Todo): void => {
     const todoObject = {
@@ -29,7 +26,7 @@ export default function Home() {
     todoService
       .create(todoObject)
       .then(returnedTodo => {
-        setTodos(prevTodos => prevTodos.concat(returnedTodo));
+        setTodos(prevTodos => prevTodos.concat(returnedTodo as Todo));
       });
   };
 
@@ -54,7 +51,7 @@ export default function Home() {
       .then(returnedTodo => {
         console.log("put")
         setTodos(
-          todos.map((todo, i) => (i === index ? returnedTodo : todo))
+          todos.map((todo, i) => (i === index ? returnedTodo : todo) as Todo)
         );
       });
   };
