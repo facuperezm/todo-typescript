@@ -1,34 +1,48 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Todo App in TypeScript
 
-## Getting Started
+Welcome to the Todo App in TypeScript project! This project is a simple, yet powerful Todo App built using TypeScript, React, and Next.js. The goal of this project is to demonstrate how to build a full-featured web app using TypeScript and its features to improve the development experience and the final quality of the code.
 
-First, run the development server:
+## Features
+- Create, edit and delete tasks
+- Mark tasks as completed
+- Filter tasks by completed or not
+- Persist data using LocalStorage
+- TypeScript and React to make the code more maintainable and scalable
 
-```bash
+## Getting started
+
+To get started with this project, you will need to have Node.js and npm installed on your machine.
+
+1. Clone the repository:
+git clone https://github.com/facuperezm/todo-typescript.git
+
+2. Install the dependencies:
+npm install
+
+3. Start the development server:
 npm run dev
-# or
-yarn dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open the app in your browser:
+http://localhost:3000
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Building and Running for Production
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+To build and run the app for production, you can use the following commands:
+npm run build
+npm start
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Contributing
 
-## Learn More
+If you are interested in contributing to this project, please feel free to open a pull request or an issue. Any contributions, no matter how small, are always welcome!
 
-To learn more about Next.js, take a look at the following resources:
+## License
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Acknowledgements
 
-## Deploy on Vercel
+- [React](https://reactjs.org/)
+- [Next.js](https://nextjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This Todo App was developed by [Facundo Perez Montalvo](https://github.com/facuperezm) as a way to demonstrate how to build a full-featured web app using TypeScript and its features to improve the development experience and the final quality of the code.
